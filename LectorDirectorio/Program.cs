@@ -47,7 +47,7 @@ do
                 Console.WriteLine($"\t| {file.Name,-40}| {file.Length, -13} Bytes");
                 InfoArchivo.Add($"{file.Name},{file.Length},{file.LastAccessTime.ToString("yyyy-MM-dd HH:mm:ss")}");    /* guardado de los datos en la lista */
             }
-            string rutaCsv = Path.Combine(path,"reporte_archivos.csv");
+            string rutaCsv = "reporte_archivos.csv";
             File.WriteAllLines(rutaCsv,InfoArchivo); /* guardado de los datos en el archivo csv */
         }else{
             Console.WriteLine("\n\t\t---VACÍO---"); /* mensaje en caso de no haber archivos */
