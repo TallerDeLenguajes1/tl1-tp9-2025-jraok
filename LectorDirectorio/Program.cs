@@ -12,7 +12,12 @@ do
     path = Console.ReadLine();
     if (string.IsNullOrEmpty(path)) break;
     DirectoryInfo directorio = new DirectoryInfo(path);
-
+    if (directorio.Exists)
+    {
+        FileInfo[] archivos = directorio.GetFiles();
+        DirectoryInfo[] subDirectorios = directorio.GetDirectories();
+        Console.WriteLine("\n\t\t---SUBDIRECTORIOS---");
+    }
 
     do{
         Console.Write("\n\t\tDesea continuar? (ESC = NO | ENTER = SÍ): ");
