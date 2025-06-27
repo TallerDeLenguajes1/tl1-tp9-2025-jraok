@@ -28,7 +28,7 @@ do
         {
             foreach (DirectoryInfo sub in subDirectorios)   /* recorrido del arreglo con los subdirectorios */
             {
-                Console.WriteLine($"\t|--{sub.Name}");
+                Console.WriteLine($"\t|--> {sub.Name}");
             }
         }else{
             Console.WriteLine("\n\t\t---VACÍO---"); /* mensaje en caso de no haber subdirectorios */
@@ -37,16 +37,22 @@ do
         Console.WriteLine("\n\t\t---ARCHIVOS---");
         if (archivos.Length > 0)    /* verifico que hayan archivos */
         {
-            Console.WriteLine($"\t| {"NOMBRE",-40}| {"TAMAÑO(bytes)",-40}");    /* impresion con las columnas de informacion */
-            Console.WriteLine(new string('-', 90)); // separador visual
+            List<string> InfoArchivo = new List<string>();  /* lista para guardar los datos de los archivos */
+            InfoArchivo.Add("NOMBRE , TAMAÑO(BYTES), ULTIMO_ACCESO");   /* columas para la informacion de los archivos */
+            Console.WriteLine($"\t| {"NOMBRE",-40}| {"TAMAÑO (bytes)",-40}");    /* impresion con las columnas de informacion */
+            Console.WriteLine(new string('-', 90));     /* separador visual */
             foreach (FileInfo file in archivos) /* recorrido del arreglo con la informacion de los archivos */
             {
                 Console.WriteLine($"\t| {file.Name,-40}| {file.Length, -13} Bytes");
+                InfoArchivo.Add($"{file.Name},{file.Length},{file.LastAccessTime.ToString("yyyy-MM-dd HH:mm:ss")}");    /* guardado de los datos en la lista */
             }
-        }else
-        {
+            string rutaCsv = Path.Combine(path,"reporte_archivos.csv");
+            File.WriteAllLines(rutaCsv,InfoArchivo); /* guardado de los datos en el archivo csv */
+        }else{
             Console.WriteLine("\n\t\t---VACÍO---"); /* mensaje en caso de no haber archivos */
         }
+    }else{
+        Console.WriteLine("\n\t\t---DIRECTORIO INVÁLIDO---"); /* por si el directorio no es valido */
     }
 
     // bucle para continuar en el programa
