@@ -1,46 +1,55 @@
 ﻿using System;
 using System.IO;
-
+// variables para el manejo de la interfaz
 string path;
 bool continuar = true;
+// bucle para ejecucion de la lógica
 do
 {
-    Console.Clear();
+    Console.Clear();    /* limpieza de la terminal */
     Console.WriteLine(new string('-', 100)); // separador visual
-    Console.WriteLine("\n\t\tTALLER DE LENGUAJES I");
+    Console.WriteLine("\n\t\tTALLER DE LENGUAJES I");   /* titulo */
+    // mensaje para pedir el path
     Console.Write("\n\tIngrese el direcorio a examinar (ENTER PARA CANCELAR): ");
-    path = Console.ReadLine();
+    path = Console.ReadLine();  /* guardado de la entrada por teclado */
+    // si la entrada es vacia salimos del programa
     if (string.IsNullOrEmpty(path)) break;
+    // isntancia para el direcorio ingresado
     DirectoryInfo directorio = new DirectoryInfo(path);
-    if (directorio.Exists)
+    // lógica para encontrar los directorios y archivos
+    if (directorio.Exists)  /* verificacion de la existencia de la direccion */
     {
-        FileInfo[] archivos = directorio.GetFiles();
+        // arreglos con los archivod y subdirectorios del path
+        FileInfo[] archivos = directorio.GetFiles();    
         DirectoryInfo[] subDirectorios = directorio.GetDirectories();
+
         Console.WriteLine("\n\t\t---SUBDIRECTORIOS---");
-        if (subDirectorios.Length>0)
+        if (subDirectorios.Length>0)    /* verifico que hayan subdirectorios */
         {
-            foreach (DirectoryInfo sub in subDirectorios)
+            foreach (DirectoryInfo sub in subDirectorios)   /* recorrido del arreglo con los subdirectorios */
             {
                 Console.WriteLine($"\t|--{sub.Name}");
             }
         }else{
-            Console.WriteLine("\n\t\t---VACÍO---");
+            Console.WriteLine("\n\t\t---VACÍO---"); /* mensaje en caso de no haber subdirectorios */
         }
+
         Console.WriteLine("\n\t\t---ARCHIVOS---");
-        if (archivos.Length > 0)
+        if (archivos.Length > 0)    /* verifico que hayan archivos */
         {
-            Console.WriteLine($"\t| {"NOMBRE",-40}| {"TAMAÑO(bytes)",-40}");
+            Console.WriteLine($"\t| {"NOMBRE",-40}| {"TAMAÑO(bytes)",-40}");    /* impresion con las columnas de informacion */
             Console.WriteLine(new string('-', 90)); // separador visual
-            foreach (FileInfo file in archivos)
+            foreach (FileInfo file in archivos) /* recorrido del arreglo con la informacion de los archivos */
             {
                 Console.WriteLine($"\t| {file.Name,-40}| {file.Length, -13} Bytes");
             }
         }else
         {
-            Console.WriteLine("\n\t\t---VACÍO---");
+            Console.WriteLine("\n\t\t---VACÍO---"); /* mensaje en caso de no haber archivos */
         }
     }
 
+    // bucle para continuar en el programa
     do{
         Console.Write("\n\t\tDesea continuar? (ESC = NO | ENTER = SÍ): ");
         ConsoleKey tecla = Console.ReadKey(true).Key;
