@@ -17,6 +17,28 @@ do
         FileInfo[] archivos = directorio.GetFiles();
         DirectoryInfo[] subDirectorios = directorio.GetDirectories();
         Console.WriteLine("\n\t\t---SUBDIRECTORIOS---");
+        if (subDirectorios.Length>0)
+        {
+            foreach (DirectoryInfo sub in subDirectorios)
+            {
+                Console.WriteLine($"\t|--{sub.Name}");
+            }
+        }else{
+            Console.WriteLine("\n\t\t---VACÍO---");
+        }
+        Console.WriteLine("\n\t\t---ARCHIVOS---");
+        if (archivos.Length > 0)
+        {
+            Console.WriteLine($"\t| {"NOMBRE",-40}| {"TAMAÑO(bytes)",-40}");
+            Console.WriteLine(new string('-', 90)); // separador visual
+            foreach (FileInfo file in archivos)
+            {
+                Console.WriteLine($"\t| {file.Name,-40}| {file.Length, -13} Bytes");
+            }
+        }else
+        {
+            Console.WriteLine("\n\t\t---VACÍO---");
+        }
     }
 
     do{
