@@ -3,6 +3,7 @@ using System.IO;
 // variables para el manejo de la interfaz
 string path;
 bool continuar = true;
+
 // bucle para ejecucion de la lógica
 do
 {
