@@ -14,6 +14,15 @@ public class InfoMP3
     private string comentario;
     private byte genero;
 
+    // constructor con parametros
+    public InfoMP3(string titulo, string artista, string album, int anio, string comentario, byte genero){
+        this.titulo = titulo;
+        this.artista = artista;
+        this.album = album;
+        this.anio = anio;
+        this.comentario = comentario;
+        this.genero = genero;
+    }
     // metodo para crear una instancia de InfoMP3
     public static InfoMP3 LeerBytes(byte[] arreglo){
         // excepciones para el manejo desde main 
