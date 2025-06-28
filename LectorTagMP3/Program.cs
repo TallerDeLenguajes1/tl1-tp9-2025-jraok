@@ -47,7 +47,7 @@ if (carpeta.Exists) /* verifico la existencia de la ruta */
             MiCancion.Seek(-128, SeekOrigin.End); /* posicionamiento al final del archivo */
             MiCancion.ReadExactly(arreglo, 0, 128); /* lectura de los datos de la cancion */
 
-            InfoMP3 informacion = InfoMP3.LeerBytes(arreglo);   /* instancia con la informacion de la cancion */
+            InfoMP3 informacion = InfoMP3.LeerBytes(arreglo);   /* instancia con la informacion de la cancion Ctrl + clic para consultar definicion*/
             // impresion de la informacion de la cancion
             Console.WriteLine($"\n\t\t---INFORMACION DE LA CANCIÓN---");
             Console.WriteLine($"\t TÍTULO: {informacion.Titulo}");
